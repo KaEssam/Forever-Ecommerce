@@ -15,7 +15,7 @@ const Orders = () => {
         return null;
       }
       const response = await axios.post(
-        backendUrl + "/api/order/userorders",
+        backendUrl.endsWith('/') ? `${backendUrl}api/order/userorders` : `${backendUrl}/api/order/userorders`,
         {},
         { headers: { token } }
       );

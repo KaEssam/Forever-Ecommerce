@@ -13,7 +13,7 @@ export const ForgotPassword = () => {
   const onSubmitHandler = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post(backendUrl + "/api/user/forgot", {
+      const response = await axios.post(backendUrl.endsWith('/') ? `${backendUrl}api/user/forgot` : `${backendUrl}/api/user/forgot`, {
         email,
         password,
         reenterpassword,
