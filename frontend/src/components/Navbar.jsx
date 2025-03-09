@@ -1,6 +1,6 @@
 import React, { useContext, useState } from "react";
-import { assets } from "../assets/assets.js";
 import { Link, NavLink } from "react-router-dom";
+import { assets } from "../assets/assets.js";
 import { ShopContext } from "../context/ShopContext.jsx";
 
 const Navbar = () => {
@@ -26,7 +26,7 @@ const Navbar = () => {
       <Link to="/">
         <img src={assets.logo} alt="Logo" className="w-36" />
       </Link>
-      <ul className="hidden sm:flex gap-5 text-gray-700 text-lg">
+      <ul className="hidden gap-5 text-lg text-gray-700 sm:flex">
         <NavLink className="flex flex-col items-center gap-1" to="/">
           <p>Home</p>
           <hr className="w-2/4 border-none h-[1.5px] bg-gray-700 hidden" />
@@ -45,10 +45,10 @@ const Navbar = () => {
         </NavLink>
         <NavLink
           className="flex flex-col items-center gap-1"
-          to="https://forever-admin-pannel.vercel.app"
+          to="https://forever-ecommerce-admin-hazel.vercel.app/"
           target="_blank"
         >
-          <p className="px-2 rounded-md text-gray-700 border bg-slate-300 ">
+          <p className="px-2 text-gray-700 border rounded-md bg-slate-300 ">
             Admin Panel
           </p>
           <hr className="w-2/4 border-none h-[1.5px] bg-gray-700 hidden" />
@@ -64,7 +64,7 @@ const Navbar = () => {
             onClick={() => setShowSearch(true)}
           />
         ) : null}
-        <div className="group relative">
+        <div className="relative group">
           <img
             src={assets.profile_icon}
             alt="Profile Icon"
@@ -73,8 +73,8 @@ const Navbar = () => {
           />
           {/* Dropdown Menu */}
           {token ? (
-            <div className="group-hover:block hidden absolute dropdown-menu right-0 pt-4">
-              <div className="flex flex-col gap-2 w-36 py-3 px-5 bg-slate-100 text-gray-500 rounded">
+            <div className="absolute right-0 hidden pt-4 group-hover:block dropdown-menu">
+              <div className="flex flex-col gap-2 px-5 py-3 text-gray-500 rounded w-36 bg-slate-100">
                 <p className="cursor-pointer hover:text-black">My Profile</p>
                 <p
                   className="cursor-pointer hover:text-black"
