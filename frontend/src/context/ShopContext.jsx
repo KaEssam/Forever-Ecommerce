@@ -1,7 +1,7 @@
+import axios from "axios";
 import { createContext, useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-import axios from "axios";
 
 export const ShopContext = createContext();
 
@@ -36,8 +36,10 @@ const ShopContextProvider = (props) => {
     setCartItems(cartData);
     if (token) {
       try {
+        // Fix URL concatenation to prevent double slashes
+        const apiUrl = backendUrl.endsWith('/') ? `${backendUrl}api/cart/add` : `${backendUrl}/api/cart/add`;
         await axios.post(
-          backendUrl + "/api/cart/add",
+          apiUrl,
           { itemId, size },
           { headers: { token } }
         );
@@ -70,8 +72,10 @@ const ShopContextProvider = (props) => {
     setCartItems(cartItemCopy);
     if (token) {
       try {
+        // Fix URL concatenation to prevent double slashes
+        const apiUrl = backendUrl.endsWith('/') ? `${backendUrl}api/cart/update` : `${backendUrl}/api/cart/update`;
         await axios.post(
-          backendUrl + "/api/cart/update",
+          apiUrl,
           { itemId, size, quantity },
           { headers: { token } }
         );
@@ -109,7 +113,9 @@ const ShopContextProvider = (props) => {
 
   const getProductsData = async () => {
     try {
-      const response = await axios.get(backendUrl + "/api/product/list");
+      // Fix URL concatenation to prevent double slashes
+      const apiUrl = backendUrl.endsWith('/') ? `${backendUrl}api/product/list` : `${backendUrl}/api/product/list`;
+      const response = await axios.get(apiUrl);
       if (response.data.success) {
         setProducts(response.data.products);
       } else {
@@ -123,8 +129,10 @@ const ShopContextProvider = (props) => {
 
   const getUserCart = async (token) => {
     try {
+      // Fix URL concatenation to prevent double slashes
+      const apiUrl = backendUrl.endsWith('/') ? `${backendUrl}api/cart/get` : `${backendUrl}/api/cart/get`;
       const response = await axios.post(
-        backendUrl + "/api/cart/get",
+        apiUrl,
         {},
         {
           headers: { token },
