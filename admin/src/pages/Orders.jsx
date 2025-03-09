@@ -14,7 +14,7 @@ const Orders = ({ token }) => {
     }
     try {
       const response = await axios.post(
-        backEndURL + "/api/order/list",
+        backEndURL.endsWith('/') ? `${backEndURL}api/order/list` : `${backEndURL}/api/order/list`,
         {},
         { headers: { token } }
       );
@@ -33,7 +33,7 @@ const Orders = ({ token }) => {
   const statusHandler = async (e, orderId) => {
     try {
       const response = await axios.post(
-        backEndURL + "/api/order/status",
+        backEndURL.endsWith('/') ? `${backEndURL}api/order/status` : `${backEndURL}/api/order/status`,
         { orderId, status: e.target.value },
         { headers: { token } }
       );

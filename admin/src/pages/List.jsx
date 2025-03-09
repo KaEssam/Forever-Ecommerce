@@ -7,7 +7,7 @@ const List = ({ token }) => {
 
   const fetchList = async () => {
     try {
-      const response = await axios.get(backEndURL + "/api/product/list");
+      const response = await axios.get(backEndURL.endsWith('/') ? `${backEndURL}api/product/list` : `${backEndURL}/api/product/list`);
       if (response.data.success) {
         setList(response.data.products);
       } else {
@@ -22,7 +22,7 @@ const List = ({ token }) => {
   const removeProduct = async (id) => {
     try {
       const response = await axios.post(
-        backEndURL + "/api/product/remove",
+        backEndURL.endsWith('/') ? `${backEndURL}api/product/remove` : `${backEndURL}/api/product/remove`,
         { id },
         { headers: { token } }
       );
