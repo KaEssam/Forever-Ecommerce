@@ -1,5 +1,5 @@
 import Title from "../components/Title";
-import NewsLetterBox from "../components/NewsLetterBox";
+import NewsletterBox from "../components/NewsletterBox";
 import { assets } from "../assets/assets";
 
 const About = () => {
@@ -64,7 +64,7 @@ const About = () => {
           </p>
         </div>
       </div>
-      <NewsLetterBox />
+      <NewsletterBox />
     </div>
   );
 };
